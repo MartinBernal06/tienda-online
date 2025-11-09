@@ -1,0 +1,46 @@
+/* ======== Layout general ======== */
+body {
+  font-family: 'Poppins', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: #fafafa;
+  color: #333;
+}
+
+/* Espaciado y sombra ligera en cada microfrontend */
+body > header-info,
+body > footer-info,
+body > content-component {
+  margin: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+/* ======== Contenido principal ======== */
+.main-content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ======== Tipografía y enlaces ======== */
+a {
+  color: #4caf50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #388e3c;
+}
+
+/* ======== Ajustes responsive ======== */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px 10px;
+  }
+}
