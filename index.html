@@ -5,12 +5,13 @@
 	<title>Mi primer proyecto con microfrontends</title>
 	<link rel="stylesheet" href="./styles.css">
 	<script type="module" src="./script.js"></script>
+	<script src="https://unpkg.com/page/page.js"></script>
 </head>
 
 <body>
 	<header-info></header-info>
-	<main id="content">
-		<products-page></products-page>
+	<main id="content" class="main-content">
+		<!-- Aqui se va a cargar de manera dinamica el contenido de la pagina segun la ruta especificada -->
 	</main>
 	<footer-info></footer-info>
 </body>

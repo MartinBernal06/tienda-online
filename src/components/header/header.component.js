@@ -22,7 +22,7 @@ export class HeaderComponent extends HTMLElement {
 				</nav>
 
 				<div class="cart-container">
-				<a href="/index2.html" class="cart-link">
+				<a href="/cart" class="cart-link">
 					<img class="cart" src="./src/assets/images/cart-shopping.png" alt="Cart Icon">
 					<span class="cart-counter">0</span>
 				</a>

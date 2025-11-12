@@ -1,9 +1,11 @@
+import { ProductService } from '../../services/product.service.js';
 
 export class ProductsPage extends HTMLElement {
 
 	constructor() {
 		super();
 		this.shadow = this.attachShadow({ mode: "open" });
+		this.products = ProductService.getProducts();
 	}
 
 	connectedCallback() {
@@ -14,9 +16,9 @@ export class ProductsPage extends HTMLElement {
 
 	#render(shadow) {
 		shadow.innerHTML += `
-		<section>
+		<section class="products-section">
 			<div class="card-container">
-				THIS IS THE PAGE 1
+				${this.products.map(product => this.#renderCard(product)).join('')}
 			</div>
 		</section>
 		`;
@@ -27,5 +29,11 @@ export class ProductsPage extends HTMLElement {
 		link.setAttribute("rel", "stylesheet");
 		link.setAttribute("href", "./src/pages/products/products.page.css");
 		shadow.appendChild(link);
+	}
+
+	#renderCard(product){
+		return `
+			<product-info id="${product.id}" name="${product.name}" description="${product.description}" price="${product.price}" image="${product.img}"></product-info>
+		`
 	}
 }
