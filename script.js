@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
     page('*', ()=>  showContent('products-page'));
 
     page();
-})
+});
 
 
 function showContent(cotentId){
@@ -25,5 +25,5 @@ window.customElements.define('footer-info', FooterComponent);
 //Pages
 window.customElements.define('products-page', ProductsPage);
 window.customElements.define('cart-page', CartPage);
-window.customElements.define('product-info', ProductComponent)
+window.customElements.define('product-info', ProductComponent);
 

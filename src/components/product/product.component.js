@@ -1,5 +1,5 @@
 import { Product } from '../../models/product.js';
-
+import { LocalStorageService } from '../../services/localStorage.service.js';
 export class ProductComponent extends HTMLElement {
 
 	constructor() {
@@ -43,6 +43,13 @@ export class ProductComponent extends HTMLElement {
 	}
 
     #addToCartHandler(product){
-		
+		LocalStorageService.addProductToCart(product);
+
+		const addToCartEvent = new CustomEvent('addToCart', {
+			bubbles: true,
+			detail: { product }
+		})
+
+		window.dispatchEvent(addToCartEvent);
     }
 }

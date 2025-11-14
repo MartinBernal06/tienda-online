@@ -1,5 +1,7 @@
+import { LocalStorageService } from '../../services/localStorage.service.js';
+
 export class CartPage extends HTMLElement {
-	
+
 	constructor() {
 		super();
 	}
@@ -11,12 +13,15 @@ export class CartPage extends HTMLElement {
 	}
 
 	#render(shadow) {
+		const products = LocalStorageService.getProductsInCart();
 		shadow.innerHTML += `
-		  <section>
-			<div id="carrito-lista">
-			  THIS IS THE PAGE 2
-			</div>
-		  </section>
+		  	<section class="cart-section">
+				<div id="carrito-lista" class="cart-list">
+					<h2>🛍️ Tu carrito</h2>
+					<p class="cart-subtitle">Productos Agregados</p>
+					${this.#renderListCart(products)}
+				</div>
+			</section>
 		`;
 	}
 
@@ -25,5 +30,17 @@ export class CartPage extends HTMLElement {
 		link.setAttribute("rel", "stylesheet");
 		link.setAttribute("href", "./src/pages/cart/cart.page.js");
 		shadow.appendChild(link);
+	}
+
+	#renderListCart(products){
+		if(products.length===0){
+			return "<p>No hay productos en el carrito</p>"
+		}
+
+		return `
+			<ul>
+				${products.map(product => `<li>${product.name} - ${product.price}</li>`).join('')}
+			</ul>
+		`
 	}
 }

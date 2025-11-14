@@ -1,3 +1,5 @@
+import { LocalStorageService } from "../../services/localStorage.service.js";
+
 export class HeaderComponent extends HTMLElement {
 	constructor() {
 		super();
@@ -7,6 +9,7 @@ export class HeaderComponent extends HTMLElement {
 		const shadow = this.attachShadow({ mode: "open" });
 		this.#addStyles(shadow);
 		this.#render(shadow);
+		window.addEventListener('addToCart', (event) => this.#addToCartHandler(event.detail.product))
 	}
 
 	#render(shadow) {
@@ -30,6 +33,9 @@ export class HeaderComponent extends HTMLElement {
 			</div>
 		</header>
 	  `;
+
+	  const cartCounter = this.shadowRoot.querySelector('.cart-counter');
+	  cartCounter.textContent = LocalStorageService.getProductsInCart().length;
 	}
 
 	#addStyles(shadow) {
@@ -37,5 +43,12 @@ export class HeaderComponent extends HTMLElement {
 		link.setAttribute("rel", "stylesheet");
 		link.setAttribute("href", "./src/components/header/header.component.css");
 		shadow.appendChild(link);
+	}
+
+	#addToCartHandler(product){
+		const cartCounter = this.shadowRoot.querySelector('.cart-counter');
+		let currentCounter = parseInt(cartCounter.textContent);
+		currentCounter++;
+		cartCounter.textContent = currentCounter;
 	}
 }
