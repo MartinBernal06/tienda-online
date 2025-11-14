@@ -13,10 +13,15 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-function showContent(cotentId){
-    const contentContainer =document.getElementById('content');
+function showContent(contentId){
+    const contentContainer = document.getElementById('content');
 
-    contentContainer.innerHTML = `<${cotentId}></${cotentId}>`
+    if(contentId==='products-page'){
+        contentContainer.innerHTML = `<${contentId} catidadProductos=${3}></${contentId}>`;
+        return
+    }
+
+    contentContainer.innerHTML = `<${contentId}></${contentId}>`;
 }
 
 //Components
